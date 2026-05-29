@@ -37,7 +37,7 @@ body{
 .btn-primary{ background: linear-gradient(90deg,var(--primary),var(--primary-dark)) !important; color:#02120b !important; }
 .btn-primary:hover{ filter:brightness(1.05); box-shadow:0 12px 30px rgba(0,208,132,0.12) !important; transform:translateY(-3px) !important; }
 
-.section-title{ color:var(--text) !important; }
+.section-title{ color:#ffffff !important; -webkit-text-fill-color: #ffffff !important; opacity:1 !important; text-shadow:none !important; }
 .section-title::after{ background: linear-gradient(90deg, var(--primary), rgba(0,208,132,0.45)) !important; }
 
 .card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)) !important; border:1px solid var(--border) !important; box-shadow:0 6px 22px rgba(2,8,12,0.6) !important; }
@@ -50,8 +50,8 @@ body{
 /* Small accent for project cards (left neon border) */
 .project-card{ border-left:4px solid rgba(0,208,132,0.12); }
 
-/* Code-like panels: monospace for certificates/projects where appropriate */
-.certification-item, .project-card{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace; }
+/* Code-like panels: monospace for certificates where appropriate */
+.certification-item { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace; }
 
 /* Responsive tweak for hero buttons */
 .hero-actions .btn{ border-radius:0.6rem; }

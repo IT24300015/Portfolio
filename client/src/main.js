@@ -1,15 +1,15 @@
 const skillCategories = [
   {
     category: 'PROGRAMMING LANGUAGES',
-    skills: ['Java', 'JavaScript', 'SQL', 'HTML', 'CSS'],
+    skills: ['Java', 'JavaScript', 'SQL', 'HTML', 'CSS', 'Python'],
   },
   {
     category: 'FRAMEWORKS & LIBRARIES',
-    skills: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express.js', 'Java Spring Boot'],
+    skills: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express.js', 'Java Spring Boot', 'FastAPI', 'React.js', 'SQLAlchemy', 'Tailwind CSS'],
   },
   {
     category: 'DATABASES',
-    skills: ['Microsoft SQL Server', 'MySQL'],
+    skills: ['Microsoft SQL Server', 'MySQL', 'PostgreSQL'],
   },
   {
     category: 'CONCEPTS & PRACTICES',
@@ -17,16 +17,24 @@ const skillCategories = [
       'CRUD Operations',
       'Object-Oriented Programming (OOP)',
       'RESTful API Design',
+      'REST API Development',
       'Database Design',
       'Agile Methodology',
       'Version Control (Git/GitHub)',
       'Software Development Life Cycle (SDLC)',
       'Cybersecurity Fundamentals',
+      'JWT Authentication',
+      'Vulnerability Scanning',
+      'AI Integration',
+      'Database Migrations',
+      'Containerization',
+      'Cloud Deployment',
+      'OWASP Security Standards',
     ],
   },
   {
     category: 'TOOLS',
-    skills: ['Git', 'GitHub', 'VS Code', 'IntelliJ IDEA', 'Postman', 'Microsoft SQL Server Management Studio'],
+    skills: ['Git', 'GitHub', 'VS Code', 'IntelliJ IDEA', 'Postman', 'Microsoft SQL Server Management Studio', 'Docker', 'Railway', 'Vercel'],
   },
   {
     category: 'SOFT SKILLS',
@@ -34,10 +42,39 @@ const skillCategories = [
   },
 ]
 
-const projects = [
+const securityProjects = [
+  {
+    title: 'AI-Powered Web Vulnerability Scanner',
+    subtitle: '2026',
+    category: 'Security Project',
+    image: 'public/project photo.png',
+    alt: 'AI Vulnerability Scanner project photo',
+    description: 'A full-stack web application that automatically scans websites for security vulnerabilities and generates professional AI-powered reports. The scanner detects SQL injection, cross-site scripting, missing security headers, exposed sensitive files, and open redirects. After each scan the Groq AI model analyzes all findings and writes a detailed remediation report with step by step fix instructions for each vulnerability found.',
+    highlights: [
+      'Automated detection for SQL injection, XSS, missing security headers and exposed files',
+      'AI-generated remediation reports with step-by-step fixes using Groq AI',
+      'Secure API with JWT authentication and scan scheduling',
+      'Containerised deployment with Docker and CI/CD to Railway/Vercel',
+    ],
+    tech: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'Docker', 'Groq AI', 'JWT Auth', 'Railway', 'Vercel'],
+    github: 'https://github.com/IT24300015/ai-vuln-scanner-v2',
+    live: 'https://ai-vuln-scanner-v2.vercel.app',
+    gallery: [
+      { src: 'public/Home Page.png', label: 'Home Page' },
+      { src: 'public/Login Page.png', label: 'Login Page' },
+      { src: 'public/Register page.png', label: 'Register Page' },
+      { src: 'public/Dashboard.png', label: 'Dashboard' },
+      { src: 'public/New Scan Page.png', label: 'New Scan Page' },
+      { src: 'public/Scan Results.png', label: 'Scan Results' },
+      { src: 'public/AI Security Report.png', label: 'AI Security Report' },
+    ],
+  },
+]
+
+const webProjects = [
   {
     title: 'Library Management System',
-    subtitle: 'Bomiriya Central College | 2026',
+    subtitle: 'Library System Management(Bomiriya Central College) | 2026',
     image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80',
     alt: 'Library shelves and books',
     description: 'A full-stack digital library platform built to streamline book circulation, member administration, fine tracking, and reporting for Bomiriya Central College.',
@@ -82,6 +119,8 @@ const projects = [
   },
 ]
 
+let activeProjectTopic = 'security'
+
 function scrollToSection(selector) {
   const section = document.querySelector(selector)
   if (section) section.scrollIntoView({ behavior: 'smooth' })
@@ -114,7 +153,51 @@ function renderProjects() {
   const grid = document.getElementById('projects-grid')
   if (!grid) return
 
-  grid.innerHTML = projects
+  // Security Projects (render first)
+  const securityHtml = securityProjects
+    .map((project) => `
+      <article class="project-card security-project-card">
+        <div class="project-body security-project-body">
+          <div class="project-head">
+            <div class="project-title-wrap">
+              <h3>${project.title}</h3>
+            </div>
+            <div class="project-badge">${project.category}</div>
+          </div>
+
+          <div class="project-header-visual">
+            <img src="${project.image}" alt="${project.alt}" loading="lazy" onerror="this.onerror=null;this.src='profile.jpeg'" class="project-header-photo" />
+            <span class="project-header-year">${project.subtitle}</span>
+          </div>
+
+          <p class="project-description">${project.description}</p>
+
+          <div class="tag-list">
+            ${project.tech.map((t) => `<span class="tag">${t}</span>`).join('')}
+          </div>
+
+          <div class="project-gallery security-gallery" id="security-gallery">
+            ${project.gallery
+              .map((img, index) => `
+                  <figure class="gallery-card ${index === 0 ? 'featured-photo' : ''}" ${index === 0 ? 'id="security-project-photo"' : ''}>
+                    <img src="${img.src}" alt="${img.label}" loading="lazy" onerror="this.onerror=null;this.src='profile.jpeg'" />
+                    <figcaption>${img.label}</figcaption>
+                  </figure>
+                `)
+              .join('')}
+          </div>
+
+          <div class="project-actions">
+            <a href="${project.live}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Live Demo</a>
+            <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View on GitHub</a>
+          </div>
+        </div>
+      </article>
+    `)
+    .join('')
+
+  // Web Projects (render second)
+  const webHtml = webProjects
     .map(
       (project) => `
       <article class="project-card">
@@ -125,17 +208,12 @@ function renderProjects() {
           <p>${project.description}</p>
           <div class="tag-list">
             ${project.tech
-              .map(
-                (tech) =>
-                  `<span class="tag">${tech}</span>`
-              )
+              .map((tech) => `<span class="tag">${tech}</span>`)
               .join('')}
           </div>
           <ul class="bullet-list">
             ${project.highlights
-              .map(
-                (highlight) => `<li>${highlight}</li>`
-              )
+              .map((highlight) => `<li>${highlight}</li>`)
               .join('')}
           </ul>
           <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-primary full">SOURCE</a>
@@ -144,6 +222,32 @@ function renderProjects() {
     `
     )
     .join('')
+
+  grid.innerHTML = `
+    <div class="projects-topic-switch">
+      <button type="button" class="project-topic-btn ${activeProjectTopic === 'security' ? 'active' : ''}" data-project-topic="security">Security Related Projects</button>
+      <button type="button" class="project-topic-btn ${activeProjectTopic === 'web' ? 'active' : ''}" data-project-topic="web">Web Design Projects</button>
+    </div>
+
+    <section class="security-section ${activeProjectTopic === 'security' ? '' : 'hidden'}" data-project-topic-panel="security">
+      <h3 class="subsection-title">Security Projects</h3>
+      <div class="projects-grid">${securityHtml}</div>
+    </section>
+    <section class="web-section ${activeProjectTopic === 'web' ? '' : 'hidden'}" data-project-topic-panel="web" style="margin-top:1.6rem;">
+      <h3 class="subsection-title">Web Projects</h3>
+      <div class="projects-grid">${webHtml}</div>
+    </section>
+  `
+
+  grid.querySelectorAll('[data-project-topic]').forEach((button) => {
+    button.addEventListener('click', () => {
+      activeProjectTopic = button.getAttribute('data-project-topic') || 'security'
+      renderProjects()
+    })
+  })
+
+  // run lightbox setup after projects render
+  setTimeout(() => setupGalleryLightbox(), 120)
 }
 
 function setupForm() {
@@ -224,6 +328,52 @@ function setupProfileImageFallback() {
       "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><rect width='100%' height='100%' fill='#f0f9ff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#1a3a52' font-family='Segoe UI, Arial, sans-serif' font-size='160' font-weight='bold'>N</text></svg>"
     )
     img.src = `data:image/svg+xml;utf8,${fallbackSvg}`
+  })
+}
+
+function setupGalleryLightbox() {
+  // create lightbox element
+  if (document.getElementById('lightbox-overlay')) return
+  const overlay = document.createElement('div')
+  overlay.id = 'lightbox-overlay'
+  overlay.style = 'position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);z-index:9999;padding:24px;'
+  overlay.innerHTML = `
+    <div style="max-width:1100px;width:100%;">
+      <button id="lightbox-close" style="float:right;background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;margin-bottom:8px;">✕</button>
+      <img id="lightbox-image" src="" alt="" style="width:100%;height:auto;border-radius:8px;display:block;" />
+      <div id="lightbox-caption" style="color:#dfe; margin-top:8px;text-align:left;font-weight:600"></div>
+    </div>
+  `
+  document.body.appendChild(overlay)
+
+  const imgEl = overlay.querySelector('#lightbox-image')
+  const capEl = overlay.querySelector('#lightbox-caption')
+  const closeBtn = overlay.querySelector('#lightbox-close')
+
+  function openLightbox(src, label) {
+    imgEl.src = src
+    capEl.textContent = label || ''
+    overlay.style.display = 'flex'
+  }
+
+  function closeLightbox() {
+    overlay.style.display = 'none'
+    imgEl.src = ''
+  }
+
+  closeBtn.addEventListener('click', closeLightbox)
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeLightbox() })
+
+  // bind thumbnail buttons
+  document.querySelectorAll('.thumb-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-src')
+      const label = btn.getAttribute('data-label')
+      // set main visual too
+      const parent = btn.closest('.project-visual')
+      if (parent) parent.querySelector('.visual-main img').src = src
+      openLightbox(src, label)
+    })
   })
 }
 
