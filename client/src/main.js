@@ -47,7 +47,7 @@ const securityProjects = [
     title: 'AI-Powered Web Vulnerability Scanner',
     subtitle: '2026',
     category: 'Security Project',
-    image: 'public/project photo.png',
+    image: asset('project photo.png'),
     alt: 'AI Vulnerability Scanner project photo',
     description: 'A full-stack web application that automatically scans websites for security vulnerabilities and generates professional AI-powered reports. The scanner detects SQL injection, cross-site scripting, missing security headers, exposed sensitive files, and open redirects. After each scan the Groq AI model analyzes all findings and writes a detailed remediation report with step by step fix instructions for each vulnerability found.',
     highlights: [
@@ -60,13 +60,13 @@ const securityProjects = [
     github: 'https://github.com/IT24300015/ai-vuln-scanner-v2',
     live: 'https://ai-vuln-scanner-v2.vercel.app',
     gallery: [
-      { src: 'public/Home Page.png', label: 'Home Page' },
-      { src: 'public/Login Page.png', label: 'Login Page' },
-      { src: 'public/Register page.png', label: 'Register Page' },
-      { src: 'public/Dashboard.png', label: 'Dashboard' },
-      { src: 'public/New Scan Page.png', label: 'New Scan Page' },
-      { src: 'public/Scan Results.png', label: 'Scan Results' },
-      { src: 'public/AI Security Report.png', label: 'AI Security Report' },
+      { src: asset('Home Page.png'), label: 'Home Page' },
+      { src: asset('Login Page.png'), label: 'Login Page' },
+      { src: asset('Register page.png'), label: 'Register Page' },
+      { src: asset('Dashboard.png'), label: 'Dashboard' },
+      { src: asset('New Scan Page.png'), label: 'New Scan Page' },
+      { src: asset('Scan Results.png'), label: 'Scan Results' },
+      { src: asset('AI Security Report.png'), label: 'AI Security Report' },
     ],
   },
 ]
@@ -121,6 +121,16 @@ const webProjects = [
 
 let activeProjectTopic = 'security'
 
+// Helper to compute correct public asset path relative to the loaded script.
+function asset(filename) {
+  const script = document.querySelector('script[src$="main.js"]')
+  if (script) {
+    const src = script.getAttribute('src') || ''
+    return src.replace(/src\/main\.js$/, 'public/') + filename
+  }
+  return 'client/public/' + filename
+}
+
 function scrollToSection(selector) {
   const section = document.querySelector(selector)
   if (section) section.scrollIntoView({ behavior: 'smooth' })
@@ -166,7 +176,7 @@ function renderProjects() {
           </div>
 
           <div class="project-header-visual">
-            <img src="${project.image}" alt="${project.alt}" loading="lazy" onerror="this.onerror=null;this.src='profile.jpeg'" class="project-header-photo" />
+            <img src="${project.image}" alt="${project.alt}" loading="lazy" onerror="this.onerror=null;this.src='${asset('profile.jpeg')}'" class="project-header-photo" />
             <span class="project-header-year">${project.subtitle}</span>
           </div>
 
@@ -180,7 +190,7 @@ function renderProjects() {
             ${project.gallery
               .map((img, index) => `
                   <figure class="gallery-card ${index === 0 ? 'featured-photo' : ''}" ${index === 0 ? 'id="security-project-photo"' : ''}>
-                    <img src="${img.src}" alt="${img.label}" loading="lazy" onerror="this.onerror=null;this.src='profile.jpeg'" />
+                    <img src="${img.src}" alt="${img.label}" loading="lazy" onerror="this.onerror=null;this.src='${asset('profile.jpeg')}'" />
                     <figcaption>${img.label}</figcaption>
                   </figure>
                 `)
