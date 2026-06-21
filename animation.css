@@ -1,0 +1,575 @@
+/* =======================================
+   2026 CYBERSECURITY PORTFOLIO MOTION
+======================================= */
+
+/* Smooth scrolling */
+
+html{
+scroll-behavior:smooth;
+}
+
+/* =======================================
+   CYBER GRID
+======================================= */
+
+.cyber-grid{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:0;
+
+background-image:
+
+linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),
+
+linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);
+
+background-size:50px 50px;
+
+animation:gridMove 20s linear infinite;
+
+}
+
+@keyframes gridMove{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(50px);
+
+}
+
+}
+
+/* =======================================
+   CYBER AURORA
+======================================= */
+
+.cyber-aurora{
+
+position:fixed;
+
+inset:-50%;
+
+pointer-events:none;
+
+z-index:0;
+
+background:
+
+radial-gradient(circle at 20% 20%,
+
+rgba(0,212,255,.08),
+
+transparent 30%),
+
+radial-gradient(circle at 80% 30%,
+
+rgba(0,255,65,.05),
+
+transparent 30%),
+
+radial-gradient(circle at 50% 80%,
+
+rgba(0,212,255,.06),
+
+transparent 30%);
+
+animation:auroraMove 25s linear infinite alternate;
+
+}
+
+@keyframes auroraMove{
+
+0%{
+
+transform:
+
+translate(0,0)
+
+rotate(0deg);
+
+}
+
+100%{
+
+transform:
+
+translate(-80px,-50px)
+
+rotate(12deg);
+
+}
+
+}
+
+/* =======================================
+   MOUSE SPOTLIGHT
+======================================= */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:100%;
+
+height:100%;
+
+top:0;
+
+left:0;
+
+pointer-events:none;
+
+z-index:1;
+
+background:
+
+radial-gradient(
+
+400px circle at var(--x,50%) var(--y,50%),
+
+rgba(0,212,255,.08),
+
+transparent 50%
+
+);
+
+}
+
+/* =======================================
+   HERO FLOAT
+======================================= */
+
+.avatar-frame{
+
+animation:heroFloat 6s ease infinite;
+
+}
+
+@keyframes heroFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+/* =======================================
+   RADAR PULSE
+======================================= */
+
+.avatar-frame::after{
+
+content:"";
+
+position:absolute;
+
+inset:-15px;
+
+border-radius:50%;
+
+border:2px solid rgba(0,255,65,.25);
+
+animation:radarPulse 3s infinite;
+
+}
+
+@keyframes radarPulse{
+
+0%{
+
+transform:scale(.95);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(1.15);
+
+opacity:0;
+
+}
+
+}
+
+/* =======================================
+   TERMINAL CURSOR
+======================================= */
+
+.hero-heading::after{
+
+content:"_";
+
+color:#00FF41;
+
+margin-left:5px;
+
+animation:cursorBlink .8s infinite;
+
+}
+
+@keyframes cursorBlink{
+
+50%{
+
+opacity:0;
+
+}
+
+}
+
+/* =======================================
+   PREMIUM CARDS
+======================================= */
+
+.interest-card,
+
+.proj-card,
+
+.cert-card,
+
+.tool-card,
+
+.about-badge-card{
+
+position:relative;
+
+overflow:hidden;
+
+transition:
+
+transform .35s ease,
+
+box-shadow .35s ease;
+
+}
+
+.interest-card:hover,
+
+.proj-card:hover,
+
+.cert-card:hover,
+
+.tool-card:hover,
+
+.about-badge-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+
+0 20px 40px rgba(0,0,0,.3),
+
+0 0 25px rgba(0,212,255,.15);
+
+}
+
+/* =======================================
+   LIGHT SWEEP
+======================================= */
+
+.interest-card::before,
+
+.proj-card::before,
+
+.cert-card::before{
+
+content:"";
+
+position:absolute;
+
+top:-100%;
+
+left:-60%;
+
+width:60%;
+
+height:300%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.08),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+opacity:0;
+
+transition:.8s;
+
+}
+
+.interest-card:hover::before,
+
+.proj-card:hover::before,
+
+.cert-card:hover::before{
+
+left:150%;
+
+opacity:1;
+
+}
+
+/* =======================================
+   BUTTON SHINE
+======================================= */
+
+.btn{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-100%;
+
+width:100%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.2),
+
+transparent
+
+);
+
+transition:.7s;
+
+}
+
+.btn:hover::before{
+
+left:100%;
+
+}
+
+/* =======================================
+   NAVBAR UNDERLINE
+======================================= */
+
+.nav-link{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.nav-link::before{
+
+content:"";
+
+position:absolute;
+
+bottom:0;
+
+left:-100%;
+
+width:100%;
+
+height:2px;
+
+background:#00D4FF;
+
+transition:.4s;
+
+}
+
+.nav-link:hover::before{
+
+left:0;
+
+}
+
+/* =======================================
+   SECTION TITLE GLOW
+======================================= */
+
+.section-title{
+
+animation:titleGlow 4s ease infinite alternate;
+
+}
+
+@keyframes titleGlow{
+
+0%{
+
+text-shadow:none;
+
+}
+
+100%{
+
+text-shadow:
+
+0 0 18px rgba(0,212,255,.25);
+
+}
+
+}
+
+/* =======================================
+   FLOATING CHIPS
+======================================= */
+
+.float-chip{
+
+animation:floatChip 4s ease infinite;
+
+}
+
+.chip-2{
+
+animation-delay:1s;
+
+}
+
+.chip-3{
+
+animation-delay:2s;
+
+}
+
+@keyframes floatChip{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+}
+
+/* =======================================
+   IMAGE ZOOM
+======================================= */
+
+.about-img-frame img,
+
+.avatar-img,
+
+.proj-img{
+
+transition:transform .5s ease;
+
+}
+
+.about-img-frame:hover img,
+
+.avatar-frame:hover .avatar-img,
+
+.proj-card:hover .proj-img{
+
+transform:scale(1.05);
+
+}
+
+/* =======================================
+   SCROLLBAR
+======================================= */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#0A0E1A;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#00D4FF;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#00FF41;
+
+}
+
+/* =======================================
+   MOBILE OPTIMIZATION
+======================================= */
+
+@media(max-width:768px){
+
+.cyber-grid,
+
+.cyber-aurora,
+
+body::before{
+
+display:none;
+
+}
+
+.avatar-frame{
+
+animation:none;
+
+}
+
+}
